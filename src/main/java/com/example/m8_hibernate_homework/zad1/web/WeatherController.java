@@ -20,7 +20,7 @@ class WeatherController {
     }
 
     // "0 * * * * *" -> 1min
-    // "* 0 * * * *" -> 1h
+    // "0 0 * * * *" -> 1h
     @EventListener(ApplicationReadyEvent.class)
     @Scheduled(cron = "${weatherController.cron-value}")
     public void init() {
