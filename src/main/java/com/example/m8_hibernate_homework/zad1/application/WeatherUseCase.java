@@ -1,10 +1,12 @@
 package com.example.m8_hibernate_homework.zad1.application;
 
+import com.example.m8_hibernate_homework.zad1.RestApiGetException;
 import com.example.m8_hibernate_homework.zad1.application.port.WeatherService;
 import com.example.m8_hibernate_homework.zad1.domain.Weather;
 import com.example.m8_hibernate_homework.zad1.infrastructure.WeatherRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -48,8 +50,10 @@ public class WeatherUseCase implements WeatherService {
 
     private final static String LOCATION_URL = "https://www.metaweather.com/api/location/";
     private final static String WEATHER_URL = "https://www.metaweather.com/api/location/search/?query=";
-    private final static String CITY = "warsaw";
+  //  private final static String CITY = "warsaw";
 
+    @Value("${weatherUseCase.city}")
+    private String city;
 
     public WeatherUseCase(WeatherRepository repository) {
         this.restTemplate = new RestTemplate();
@@ -74,7 +78,7 @@ public class WeatherUseCase implements WeatherService {
     private Double getTemperature() {
         Double temperature = null;
         try {
-            int woeid = getWoeidFromRestApi(WEATHER_URL, CITY).orElseThrow(() -> new RestApiGetException("No location"));
+            int woeid = getWoeidFromRestApi(WEATHER_URL, city).orElseThrow(() -> new RestApiGetException("No location"));
             temperature = getTemparatureFromRestApi(LOCATION_URL, woeid).orElseThrow(() -> new RestApiGetException("No temperature"));
         } catch (RestApiGetException e) {
             log.error("RestAPI NOK : " + e.getMessage());
@@ -82,12 +86,12 @@ public class WeatherUseCase implements WeatherService {
         return temperature;
     }
 
-    private Optional<Double> getTemparatureFromRestApi(String url, int woeid) {
+    private Optional<Double> getTemparatureFromRestApi(final String url, final int woeid) {
         Optional<JsonNode> jsonNode = Stream.of(restTemplate.getForObject(url.concat(String.valueOf(woeid)), JsonNode.class)).findFirst();
         return jsonNode.map(node -> node.get("consolidated_weather").get(0).get("the_temp").asDouble());
     }
 
-    private Optional<Integer> getWoeidFromRestApi(String url, String city) {
+    private Optional<Integer> getWoeidFromRestApi(final String url, final String city) {
         Optional<JsonNode> jsonNode = Stream.of(restTemplate.getForObject(url.concat(city), JsonNode[].class)).findFirst();
         return jsonNode.map(node -> node.get("woeid").asInt());
     }

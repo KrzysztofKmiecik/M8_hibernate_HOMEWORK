@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @EnableScheduling
-public class WeatherController {
+class WeatherController {
 
     private final WeatherService service;
 
@@ -19,8 +19,10 @@ public class WeatherController {
         this.service = service;
     }
 
+    // "0 * * * * *" -> 1min
+    // "* 0 * * * *" -> 1h
     @EventListener(ApplicationReadyEvent.class)
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "${weatherController.cron-value}")
     public void init() {
         service.saveTempToDB();
     }
