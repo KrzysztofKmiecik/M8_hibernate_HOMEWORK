@@ -1,4 +1,4 @@
-package com.example.m8_hibernate_homework.zad1;
+package com.example.m8_hibernate_homework.zad1.domain;
 
 import javax.persistence.*;
 import java.util.StringJoiner;
@@ -10,12 +10,12 @@ public class Weather {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column(name="time_stamp")
+    @Column(name = "time_stamp")
     private String date;
     @Column(name = "temperature")
     private Double temperature;
 
-    public Weather( String date, Double temperature) {
+    public Weather(String date, Double temperature) {
         this.date = date;
         this.temperature = temperature;
     }
