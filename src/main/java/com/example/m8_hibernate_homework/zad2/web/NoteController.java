@@ -28,7 +28,7 @@ public class NoteController {
         List<Note> allNotes = service.findAllNotes();
         model.addAttribute("notes",allNotes);
         model.addAttribute("newNote",new Note());
-        return "noteViews";
+        return "notesView";
     }
 
     @PostMapping
@@ -37,8 +37,6 @@ public class NoteController {
         service.saveNote(note);
         return "redirect:/notepad";
     }
-
-
 
 
 }

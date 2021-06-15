@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/v4-shims.min.css">
+
+</head>
+<body>
+<h1>Notes</h1>
+
+<table class="table table-striped table-hover table-sm">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Text</th>
+        <th>Timestamp</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+    <tr th:each="note:${notes}">
+        <td th:text="${note.getId()}">id</td>
+        <td th:text="${note.getText()}">text</td>
+        <td th:text="${note.getTimeStamp()}">time_stamp</td>
+        <td>
+            <form th:action="@{edit-noteButton}" th:object="${newNote}" method="post">
+                <input type="hidden" name="id" th:value="${newNote.getId()}">
+                <button name="action" type="submit">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{delete-noteButton}" th:object="${newNote}" method="post">
+                <input type="hidden" name="id" th:value="${newNote.getId()}">
+                <button name="action" type="submit">Delete</button>
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br>
+<form th:action="@{/add-noteButton}" th:object="${newNote}" method="post">
+    <button name="action" type="submit">Add note</button>
+</form>
+
+<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
+<script src="/webjars/popper.js/1.14.3/popper.min.js"></script>
+<script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
