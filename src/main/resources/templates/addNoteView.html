@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Note to edit</title>
+    <title>Add note View</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/v4-shims.min.css">
 
 </head>
 <body>
-<form th:action="@{/notepad}" th:object="${newNote}" method="post">
+<form th:action="@{/addNote}" th:object="${newNote}" method="post">
     <p><input type="text" th:field="*{text}"></p>
     <p><input type="submit" th:value="addNote"></p>
 </form>

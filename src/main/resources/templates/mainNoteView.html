@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Notes</title>
+    <title>Main Note View </title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="/webjars/font-awesome/5.11.2/css/v4-shims.min.css">
@@ -28,13 +28,13 @@
         <td th:text="${note.getTimeStamp()}">time_stamp</td>
         <td>
             <form th:action="@{edit-noteButton}" th:object="${newNote}" method="post">
-                <input type="hidden" name="id" th:value="${newNote.getId()}">
+                <input type="hidden" name="id" th:value="${note.getId()}">
                 <button name="action" type="submit">Edit</button>
             </form>
         </td>
         <td>
             <form th:action="@{delete-noteButton}" th:object="${newNote}" method="post">
-                <input type="hidden" name="id" th:value="${newNote.getId()}">
+                <input type="hidden" name="id" th:value="${note.getId()}">
                 <button name="action" type="submit">Delete</button>
             </form>
         </td>

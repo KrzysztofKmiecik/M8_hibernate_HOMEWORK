@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NoteServiceIUseCase implements NoteService {
+class NoteServiceIUseCase implements NoteService {
 
     private final NoteRepository repository;
 
@@ -33,6 +33,14 @@ public class NoteServiceIUseCase implements NoteService {
     @Override
     public void saveNote(Note note){
         repository.save(note);
+    }
+
+
+
+    @Override
+    public void deleteNoteById(Long id) {
+        repository.deleteById(id);
+
     }
 
 

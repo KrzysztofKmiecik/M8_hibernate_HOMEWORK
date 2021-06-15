@@ -6,5 +6,6 @@
 ## Zad2. Napisz Notatnik online – aplikacje z interfejsem graficznym, 
 - [x] która umożliwia na tworzenie notatek, 
 - [x] zapisywanie ich w bazie danych, 
-- [ ] późniejszą edycję, 
+- [x] późniejszą edycję, 
 - [x] oraz wyświetlanie.
+  ![Screenshot](src/main/resources/static/Screenshot 2021-06-15 at 17.05.40.png)

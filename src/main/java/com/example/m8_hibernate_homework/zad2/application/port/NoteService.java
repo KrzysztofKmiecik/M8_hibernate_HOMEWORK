@@ -13,4 +13,6 @@ public interface NoteService {
     Optional<Note> findNoteById(Long id);
 
     void saveNote(Note note);
+
+    void deleteNoteById(Long id);
 }
