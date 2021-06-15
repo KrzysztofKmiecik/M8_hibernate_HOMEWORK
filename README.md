@@ -8,4 +8,4 @@
 - [x] zapisywanie ich w bazie danych, 
 - [x] późniejszą edycję, 
 - [x] oraz wyświetlanie.
-  ![Screenshot](src/main/resources/static/Screenshot 2021-06-15 at 17.05.40.png)
+  ![img_1.png](src/main/resources/static/Screenshot 2021-06-15 at 17.05.40.png)
